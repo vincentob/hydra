@@ -1,42 +1,41 @@
 package template
 
 func init() {
-	CommonProjectFiles["config/env.go"] = `package config
+	CommonProjectFiles["config/env.go"] = "package config\n\n" +
+		"import (\n" +
+		"	_ \"github.com/dantin-s/hydra/logger\"\n\n" +
 
-import (
-	"github.com/caarlos0/env/v6"
-	"github.com/sirupsen/logrus"
+		"	\"github.com/caarlos0/env/v6\"\n" +
+		"	\"github.com/dantin-s/hydra/json\"\n" +
+		"	\"github.com/sirupsen/logrus\"\n" +
+		")\n\n" +
 
-	"github.com/dantin-s/hydra/json"
-	_ "github.com/dantin-s/hydra/logger"
-)
+		"const (\n" +
+		"	EnvStaging    = \"staging\"\n" +
+		"	EnvProduction = \"production\"\n" +
+		")\n\n" +
 
-const (
-	EnvStaging    = "staging"
-	EnvProduction = "production"
-)
+		"type config struct {\n" +
+		"	Env      string `env:\"ENV\"         envDefault:\"staging\"`\n" +
+		"	LogLevel string `env:\"LOG_LEVEL\"   envDefault:\"info\"`\n" +
+		"}\n\n" +
 
-type config struct {
-	
-}
+		"var Env = &config{}\n\n" +
 
-var Env = &config{}
+		"func init() {\n" +
+		"	if err := env.Parse(Env); err != nil {\n" +
+		"		logrus.Panic(err)\n" +
+		"	}\n\n" +
 
-func init() {
-	if err := env.Parse(Env); err != nil {
-		logrus.Panic(err)
-	}
+		"	PrintENV()\n" +
+		"}\n\n" +
 
-	PrintENV()
-}
+		"func PrintENV() {\n" +
+		"	logrus.Infof(\"\\nRunning with configuration: \\n%v\\n\", Env)\n" +
+		"}\n\n" +
 
-func PrintENV() {
-	logrus.Infof("\nRunning with configuration: \n%v\n", Env)
-}
-
-func (c *config) String() string {
-	v, _ := json.FastJJ.MarshalIndent(c, "", "  ")
-	return string(v)
-}
-`
+		"func (c *config) String() string {\n" +
+		"	v, _ := json.FastJJ.MarshalIndent(c, \"\", \"  \")\n" +
+		"	return string(v)\n" +
+		"}\n\n"
 }

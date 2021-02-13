@@ -10,8 +10,8 @@ import (
 	"github.com/urfave/cli"
 	"github.com/dantin-s/hydra/middlewares"
 	"github.com/dantin-s/hydra/signals"
-	"github.com/dantin-s/{{ .ProjectName }}/config"
-	"github.com/dantin-s/{{ .ProjectName }}/route
+	"{{ .ProjectPath }}/config"
+	"{{ .ProjectPath }}/route"
 )
 
 func Server(c *cli.Context) error {

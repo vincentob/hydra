@@ -15,7 +15,7 @@ import (
 
 var (
 	commonDir = []string{"/cmd", "/config", "/playground"}
-	webDir    = []string{"/actions", "/migrations", "/model", "/route"}
+	webDir    = []string{"/api", "/handler", "/migrations", "/model", "/route"}
 )
 
 // TemplateData
@@ -78,6 +78,12 @@ func createProjectTplFiles(data *TemplateData, projectType string) error {
 		for k, v := range tpl.WebProjectFiles {
 			tpls[k] = v
 		}
+
+		// generate migrations template files
+		MigrationsDir = fmt.Sprintf("%s/%s", data.ProjectName, MigrationsDir)
+		if err := InitGolangMigrations(nil); err != nil {
+			return err
+		}
 	}
 
 	for _, dir := range dirs {
@@ -107,12 +113,6 @@ func createProjectTplFiles(data *TemplateData, projectType string) error {
 		}
 
 		_ = f.Close()
-	}
-
-	// generate migrations template files
-	MigrationsDir = fmt.Sprintf("%s/%s", data.ProjectName, MigrationsDir)
-	if err := initMigrationsTplFiles(); err != nil {
-		return err
 	}
 
 	logrus.Info("Generate template files done. You should now run 'go mod tidy' to gen the go.sum file.")

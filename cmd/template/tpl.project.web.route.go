@@ -6,16 +6,12 @@ package route
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/dantin-s/{{ .ProjectName }}/actions"
+	"{{ .ProjectPath }}/api"
 )
 
 // InitAPIRouter register api path.
 func InitAPIRouter(engine *gin.Engine) {
-	api := engine.Group("/api/v1")
-	{
-		api.POST("/model", actions.Save)
-	}
+	engine.GET("/ping", api.Ping)
 }
-
 `
 }

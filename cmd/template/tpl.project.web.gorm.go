@@ -1,7 +1,7 @@
 package template
 
 func init() {
-	ProjectTpl["config/gorm.go"] = `// Generate By Template
+	WebProjectFiles["config/gorm.go"] = `// Generate By Template
 package config
 
 import (

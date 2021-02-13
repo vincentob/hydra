@@ -1,7 +1,7 @@
 package template
 
 func init() {
-	ProjectTpl["Dockerfile"] = `# Created by template.
+	CommonProjectFiles["Dockerfile"] = `# Created by template.
 # Builder
 FROM golang:1.15-alpine as builder
 COPY / /go/src/github.com/dantin-s/{{ .ProjectName }}

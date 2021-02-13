@@ -1,7 +1,7 @@
 package template
 
 func init() {
-	ProjectTpl[".gitignore"] = `# Created by .ignore support plugin (hsz.mobi)
+	CommonProjectFiles[".gitignore"] = `# Created by .ignore support plugin (hsz.mobi)
 ### Go template
 # Binaries for programs and plugins
 *.exe

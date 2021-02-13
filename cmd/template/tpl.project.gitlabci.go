@@ -1,7 +1,7 @@
 package template
 
 func init() {
-	ProjectTpl[".gitlab-ci.yml"] = `# Created by template.
+	CommonProjectFiles[".gitlab-ci.yml"] = `# Created by template.
 stages:
   - test
   - build

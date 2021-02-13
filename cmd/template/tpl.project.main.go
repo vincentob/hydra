@@ -1,9 +1,12 @@
 package template
 
-var ProjectTpl = map[string]string{}
+var (
+	CommonProjectFiles = map[string]string{}
+	WebProjectFiles    = map[string]string{}
+)
 
 func init() {
-	ProjectTpl["main.go"] = `package main
+	CommonProjectFiles["main.go"] = `package main
 
 import (
 	"os"

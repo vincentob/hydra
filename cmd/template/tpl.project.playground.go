@@ -1,7 +1,7 @@
 package template
 
 func init() {
-	ProjectTpl["playground/play.go"] = `package main
+	CommonProjectFiles["playground/play.go"] = `package main
 
 func main() {
 

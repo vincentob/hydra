@@ -1,7 +1,7 @@
 package template
 
 func init() {
-	ProjectTpl["Makefile"] = `# go build output binary filename
+	CommonProjectFiles["Makefile"] = `# go build output binary filename
 NAME={{ .ProjectName }}
 BINARY={{ .ProjectName }}
 GO111MODULE=on

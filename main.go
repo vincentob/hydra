@@ -31,9 +31,21 @@ func main() {
 			Usage: "Hydra init new-golang-project with go.",
 			Subcommands: []cli.Command{
 				{
-					Name: "init",
-					Action: func(c *cli.Context) error {
-						return cmd.InitGolangProject(c)
+					Name:      "init",
+					UsageText: "golang init web gitlab.shoplazza.site/shoplaza/prj",
+					Subcommands: []cli.Command{
+						{
+							Name: "web",
+							Action: func(c *cli.Context) error {
+								return cmd.InitGolangWebProject(c)
+							},
+						},
+						{
+							Name: "cmd",
+							Action: func(c *cli.Context) error {
+								return cmd.InitGolangCMDProject(c)
+							},
+						},
 					},
 				},
 			},

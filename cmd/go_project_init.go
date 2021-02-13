@@ -14,7 +14,8 @@ import (
 )
 
 var (
-	initDir = []string{"/actions", "/cmd", "/config", "/migrations", "/model", "/playground", "/route"}
+	commonDir = []string{"/cmd", "/config", "/playground"}
+	webDir    = []string{"/actions", "/migrations", "/model", "/route"}
 )
 
 // TemplateData
@@ -24,8 +25,21 @@ type TemplateData struct {
 	ProjectUsage string
 }
 
-// InitGolangProject create new golang project with go mod init and urfave/cli framework.
-func InitGolangProject(c *cli.Context) error {
+const (
+	ProjectTypeWeb = "web"
+	ProjectTypeCMD = "cmd"
+)
+
+func InitGolangWebProject(c *cli.Context) error {
+	return initGolangProject(c, ProjectTypeWeb)
+}
+
+func InitGolangCMDProject(c *cli.Context) error {
+	return initGolangProject(c, ProjectTypeCMD)
+}
+
+// initGolangProject create new golang project with go mod init and urfave/cli framework.
+func initGolangProject(c *cli.Context, projectType string) error {
 	if len(c.Args()) != 1 {
 		return errors.New("too many parameters")
 	}
@@ -37,7 +51,8 @@ func InitGolangProject(c *cli.Context) error {
 		return errors.New("Project path should like 'github.com/user/projectName' ")
 	}
 
-	if !strings.HasPrefix(projectPathSplit[0], "gitlab") && !strings.HasPrefix(projectPathSplit[0], "github") {
+	if !strings.HasPrefix(projectPathSplit[0], "gitlab") &&
+		!strings.HasPrefix(projectPathSplit[0], "github") {
 		return errors.New("project path should start with 'gitlab' or 'github'")
 	}
 
@@ -46,23 +61,33 @@ func InitGolangProject(c *cli.Context) error {
 		ProjectPath: projectPath,
 	}
 
-	return createProjectTplFiles(data)
+	return createProjectTplFiles(data, projectType)
 }
 
-func createProjectTplFiles(data *TemplateData) error {
+func createProjectTplFiles(data *TemplateData, projectType string) error {
 	if _, err := os.Stat(data.ProjectName); err == nil {
 		return fmt.Errorf("Project dir exist: %s ", data.ProjectName)
 	}
 
-	// create project dir
-	for _, dir := range initDir {
+	dirs := commonDir
+	tpls := tpl.CommonProjectFiles
+
+	if projectType == ProjectTypeWeb {
+		dirs = append(commonDir, webDir...)
+
+		for k, v := range tpl.WebProjectFiles {
+			tpls[k] = v
+		}
+	}
+
+	for _, dir := range dirs {
 		if err := os.MkdirAll(data.ProjectName+dir, 0755); err != nil {
 			return err
 		}
 	}
 
 	// generate template files
-	for k, v := range tpl.ProjectTpl {
+	for k, v := range tpls {
 		filePath := fmt.Sprintf("%s/%s", data.ProjectName, k)
 
 		logrus.Info("Create template file: ", filePath)

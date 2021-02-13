@@ -1,7 +1,7 @@
 package template
 
 func init() {
-	ProjectTpl["config/env.go"] = `package config
+	CommonProjectFiles["config/env.go"] = `package config
 
 import (
 	"github.com/caarlos0/env/v6"

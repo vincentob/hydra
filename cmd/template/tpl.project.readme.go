@@ -1,7 +1,7 @@
 package template
 
 func init() {
-	ProjectTpl["README.MD"] = `
+	CommonProjectFiles["README.MD"] = `
 # {{ .ProjectName }}
 `
 }

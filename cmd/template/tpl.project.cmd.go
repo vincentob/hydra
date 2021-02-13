@@ -1,7 +1,7 @@
 package template
 
 func init() {
-	ProjectTpl["cmd/server.go"] = `// Generate By Template
+	CommonProjectFiles["cmd/server.go"] = `// Generate By Template
 package cmd
 
 import (
@@ -44,7 +44,7 @@ func Server(c *cli.Context) error {
 	return nil
 }`
 
-	ProjectTpl["cmd/migrations.go"] = `// Generate By Template
+	CommonProjectFiles["cmd/migrations.go"] = `// Generate By Template
 package cmd
 
 import (

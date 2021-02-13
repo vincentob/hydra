@@ -1,7 +1,7 @@
 package template
 
 func init() {
-	ProjectTpl["actions/actions.go"] = `// Generate By Template
+	WebProjectFiles["actions/actions.go"] = `// Generate By Template
 package actions
 
 import (

@@ -1,7 +1,7 @@
 package template
 
 func init() {
-	ProjectTpl["route/route.go"] = `// Generate By Template
+	WebProjectFiles["route/route.go"] = `// Generate By Template
 package route
 
 import (

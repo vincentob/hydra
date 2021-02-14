@@ -1,15 +1,27 @@
 package template
 
 func init() {
-	CommonProjectFiles["cmd/server.go"] = `// Generate By Template
+	CommonProjectFiles["cmd/default.go"] = `// Generate By Template
 package cmd
 
 import (
+	"github.com/urfave/cli"
+)
+
+func Default(c *cli.Context) error {
+	return nil
+}`
+
+	WebProjectFiles["cmd/server.go"] = `// Generate By Template
+package cmd
+
+import (
+	"github.com/dantin-s/hydra/middlewares"
+	"github.com/dantin-s/hydra/signals"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
-	"github.com/dantin-s/hydra/middlewares"
-	"github.com/dantin-s/hydra/signals"
+
 	"{{ .ProjectPath }}/config"
 	"{{ .ProjectPath }}/route"
 )

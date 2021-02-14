@@ -36,10 +36,10 @@ func main() {
 
 	app.Commands = []cli.Command{
 		{
-			Name:  "server",
-			Usage: "start a web server",
+			Name:  "default",
+			Usage: "default cmd",
 			Action: func(c *cli.Context) error {
-				return cmd.Server(c)
+				return cmd.Default(c)
 			},
 		},
 	}

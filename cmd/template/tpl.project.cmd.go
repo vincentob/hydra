@@ -44,7 +44,7 @@ func Server(c *cli.Context) error {
 	return nil
 }`
 
-	CommonProjectFiles["cmd/migrations.go"] = `// Generate By Template
+	WebProjectFiles["cmd/migrations.go"] = `// Generate By Template
 package cmd
 
 import (
@@ -55,7 +55,7 @@ import (
 )
 
 func DoMigrate(c *cli.Context) error {
-	return migrations.DoMigrate(config.DB)	
+	return migrations.DoMigrate(config.DB)
 }`
 
 }

@@ -1,12 +1,7 @@
 package template
 
-var (
-	CommonProjectFiles = map[string]string{}
-	WebProjectFiles    = map[string]string{}
-)
-
 func init() {
-	CommonProjectFiles["main.go"] = `package main
+	WebProjectFiles["main.go"] = `package main
 
 import (
 	"os"
@@ -40,6 +35,13 @@ func main() {
 			Usage: "start a web server",
 			Action: func(c *cli.Context) error {
 				return cmd.Server(c)
+			},
+		},
+		{
+			Name:  "migrations",
+			Usage: "run db migrations",
+			Action: func(c *cli.Context) error {
+				return cmd.DoMigrate(c)
 			},
 		},
 	}

@@ -21,12 +21,12 @@ var (
 // init zap AppLogger and EventLogger
 // for AppLogger, json format
 // for EventLogger, text format
-func init() {
+func InitZapLogger(svc string) {
 	cfg := zap.NewProductionConfig()
 
 	cfg.EncoderConfig.LevelKey = "log_level"
 	cfg.InitialFields = map[string]interface{}{}
-	cfg.InitialFields["service"] = "service"
+	cfg.InitialFields["service"] = svc
 	cfg.InitialFields["hostname"], _ = os.Hostname()
 
 	cfg.InitialFields["log_type"] = "app"

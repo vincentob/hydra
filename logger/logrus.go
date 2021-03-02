@@ -1,18 +1,18 @@
 package logger
 
-import "github.com/sirupsen/logrus"
+import (
+	"github.com/sirupsen/logrus"
+)
 
 const (
 	RFC666 = "2006-01-02 15:04:05.000"
 )
 
-// init my default logrus formatter
-// usage:
-//   import _ "github.com/dantin-s/hydra/logger"
+// InitLogrusConsoleLogger
 //
 // log level:
 //   Panic > Fatal > Error > Warn > Info > Debug > Trace
-func init() {
+func InitLogrusConsoleLogger() {
 	formatter := &logrus.TextFormatter{
 		ForceColors:               true,
 		EnvironmentOverrideColors: true,
@@ -23,6 +23,20 @@ func init() {
 		DisableColors:             false,
 		DisableTimestamp:          false,
 		DisableSorting:            false,
+	}
+
+	logrus.SetFormatter(formatter)
+	logrus.SetLevel(logrus.InfoLevel)
+}
+
+// InitLogrusJSONLogger
+func InitLogrusJSONLogger() {
+	formatter := &logrus.JSONFormatter{
+		TimestampFormat:   RFC666,
+		DisableTimestamp:  false,
+		DisableHTMLEscape: false,
+		DataKey:           "message",
+		PrettyPrint:       false,
 	}
 
 	logrus.SetFormatter(formatter)

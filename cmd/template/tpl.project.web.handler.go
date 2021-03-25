@@ -5,7 +5,6 @@ func init() {
 package handler
 
 import (
-	"github.com/dantin-s/hydra/formutil"
 	"github.com/gin-gonic/gin"
 )
 

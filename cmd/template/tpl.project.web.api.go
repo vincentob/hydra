@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func HandlePing(c *gin.Context) {
+func Ping(c *gin.Context) {
 	formutil.Handle(&handler.PingForm{}, c)
 }
 `

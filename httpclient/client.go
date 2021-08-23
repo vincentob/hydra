@@ -39,28 +39,38 @@ func DoGetJson(url string, customHeaders map[string]string, result interface{}) 
 
 // DoPostJson do post method with struct data.
 // It return raw http response and error.
-func DoPostJson(url string, customHeaders map[string]string, body, result interface{}) (resp *http.Response, err error) {
-	return DoJson(http.MethodPost, url, customHeaders, body, result)
+func DoPostJson(url string, customHeaders map[string]string, data, result interface{}) (resp *http.Response, err error) {
+	return DoJson(http.MethodPost, url, customHeaders, data, result)
 }
 
-func DoPutJson(url string, customHeaders map[string]string, body, result interface{}) (resp *http.Response, err error) {
-	return DoJson(http.MethodPut, url, customHeaders, body, result)
+func DoPutJson(url string, customHeaders map[string]string, data, result interface{}) (resp *http.Response, err error) {
+	return DoJson(http.MethodPut, url, customHeaders, data, result)
 }
 
-func DoJson(method string, url string, customHeaders map[string]string, body, result interface{}) (resp *http.Response, err error) {
-	var bodyData string
-	switch body.(type) {
+func DoJson(method string, url string, customHeaders map[string]string, data, result interface{}) (resp *http.Response, err error) {
+	var body io.Reader
+	switch data.(type) {
 	case string:
 		logrus.Debug("do DoJson with string body")
-		bodyData = body.(string)
+		body = bytes.NewBufferString(data.(string))
+
+	case []byte:
+		logrus.Debug("do DoJson with bytes")
+		body = bytes.NewBuffer(data.([]byte))
+
 	case nil:
 		logrus.Debug("do DoJson with nil body")
+
 	default:
 		logrus.Debug("do DoJson with struct body")
-		bodyData, err = json.FastJJ.MarshalToString(body)
+		if bodyData, err := json.FastJJ.Marshal(data); err != nil {
+			logrus.Error("marshal data failed")
+		} else {
+			body = bytes.NewReader(bodyData)
+		}
 	}
 
-	req, err := http.NewRequest(method, url, bytes.NewBufferString(bodyData))
+	req, err := http.NewRequest(method, url, body)
 	if err != nil {
 		return nil, errors.Wrap(err, "new http request failed")
 	}

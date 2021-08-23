@@ -2,7 +2,6 @@ package notification
 
 import (
 	"github.com/dantin-s/hydra/httpclient"
-	"github.com/dantin-s/hydra/json"
 	"github.com/pkg/errors"
 )
 
@@ -49,14 +48,9 @@ type DDResponse struct {
 }
 
 func SendDD(msg *DDMsg, url string) (*DDResponse, error) {
-	data, err := json.FastJJ.Marshal(msg)
-	if err != nil {
-		return nil, err
-	}
-
 	var dingDingResp DDResponse
-	_, err = httpclient.DoPostJson(url, nil, data, &dingDingResp)
-	if err != nil {
+
+	if _, err := httpclient.DoPostJson(url, nil, msg, &dingDingResp); err != nil {
 		return nil, errors.Wrap(err, "SendDD failed")
 	}
 

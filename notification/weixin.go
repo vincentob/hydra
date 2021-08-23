@@ -66,7 +66,7 @@ func SendWX(content *WXMsgBody, agentID string, agentSecret string) error {
 		return errors.Wrap(errors.New(accessToken.ErrMsg), "get accessToken failed")
 	}
 
-	msgURL := fmt.Sprintf(WXMsgUrl, accessToken)
+	msgURL := fmt.Sprintf(WXMsgUrl, accessToken.AccessToken)
 	wxResult := &WXResponse{}
 	if _, err := httpclient.DoPostJson(msgURL, nil, content, wxResult); err != nil {
 		return errors.Wrap(errors.New(wxResult.ErrMsg), "send wx failed")

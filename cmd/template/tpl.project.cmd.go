@@ -27,7 +27,7 @@ import (
 )
 
 func Server(c *cli.Context) error {
-    var engine *gin.Engine
+	var engine *gin.Engine
 
 	// Set gin release mode.
 	if config.Env.Env == config.EnvProduction {

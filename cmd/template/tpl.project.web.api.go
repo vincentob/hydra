@@ -7,6 +7,8 @@ package api
 import (
 	"github.com/dantin-s/hydra/formutil"
 	"github.com/gin-gonic/gin"
+
+	"{{ .ProjectPath }}/handler"
 )
 
 func Ping(c *gin.Context) {

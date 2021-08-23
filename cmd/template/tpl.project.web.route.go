@@ -11,7 +11,7 @@ import (
 
 // InitAPIRouter register api path.
 func InitAPIRouter(engine *gin.Engine) {
-	engine.GET("/ping", api.Ping)
+	engine.GET("/ping", api.HandlePing)
 }
 `
 }

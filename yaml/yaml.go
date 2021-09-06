@@ -3,8 +3,8 @@ package yaml
 import (
 	"io/ioutil"
 
+	"github.com/ghodss/yaml"
 	"github.com/pkg/errors"
-	"gopkg.in/yaml.v3"
 )
 
 func Marshal(in interface{}) (out []byte, err error) {

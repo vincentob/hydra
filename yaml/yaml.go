@@ -23,3 +23,18 @@ func UnmarshalFromFile(filename string, out interface{}) (err error) {
 
 	return yaml.Unmarshal(bts, out)
 }
+
+func MarshalToFile(filename string, data interface{}) error {
+	var err error
+	var out []byte
+
+	if out, err = yaml.Marshal(data); err != nil {
+		return errors.Wrap(err, "marshal data failed")
+	}
+
+	if err = ioutil.WriteFile(filename, out, 0600); err != nil {
+		return errors.Wrap(err, "write file failed")
+	}
+
+	return nil
+}

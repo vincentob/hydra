@@ -15,7 +15,7 @@ type FormHandler interface {
 func Handle(form FormHandler, c *gin.Context) {
 	if err := c.ShouldBind(form); err != nil {
 		logrus.Error(errors.Wrap(err, "bind data to form failed"))
-		ResponseErr(c, http.StatusBadRequest, err)
+		ResponseErr(c, http.StatusBadRequest, err, nil)
 		return
 	}
 
@@ -28,8 +28,8 @@ func Handle(form FormHandler, c *gin.Context) {
 	// If error has status code, return with e.Status
 	// Else, return status 200 and error msg in body.
 	if e, ok := err.(FormError); ok {
-		ResponseErr(c, e.Status, err)
+		ResponseErr(c, e.Status, err, data)
 	} else {
-		ResponseErr(c, http.StatusOK, err)
+		ResponseErr(c, http.StatusOK, err, data)
 	}
 }

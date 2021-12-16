@@ -30,10 +30,10 @@ build:
   only:
     refs:
       - develop
-	  - tags
+      - tags
   except:
     - triggers
-	- apis
+    - apis
   tags:
     - image-builder-cn
 
@@ -45,28 +45,8 @@ k8s-staging:
     - develop
   except:
     - triggers
-	- apis
+    - apis
   tags:
     - deployer-cn
-
-k8s-pre-release:
-  stage: deploy
-  script:
-    - . ~/ci-script/deploy.sh pre-release
-  only:
-    - tags
-  tags:
-    - deployer-us
-  when: manual
-
-k8s-production:
-  stage: deploy
-  script:
-    - . ~/ci-script/deploy.sh production
-  only:
-    - tags
-  tags:
-    - deployer-us
-  when: manual
 `
 }

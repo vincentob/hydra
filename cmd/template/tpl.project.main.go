@@ -12,12 +12,12 @@ import (
 	"os"
 	"time"
 
-	"{{ .ProjectPath }}/cmd"
-
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
+	"github.com/dantin-s/hydra/logger"
 
-	_ "github.com/dantin-s/hydra/logger"
+	"{{ .ProjectPath }}/cmd"
+	"{{ .ProjectPath }}/config"
 )
 
 func main() {
@@ -42,6 +42,12 @@ func main() {
 				return cmd.Default(c)
 			},
 		},
+	}
+
+	logger.InitLogrusConsoleLogger()
+
+	if lvl, err := logrus.ParseLevel(config.Env.LogLevel); err == nil {
+		logrus.SetLevel(lvl)
 	}
 
 	if err := app.Run(os.Args); err != nil {

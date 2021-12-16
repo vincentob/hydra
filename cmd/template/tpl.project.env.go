@@ -3,8 +3,6 @@ package template
 func init() {
 	CommonProjectFiles["config/env.go"] = "package config\n\n" +
 		"import (\n" +
-		"	_ \"github.com/dantin-s/hydra/logger\"\n\n" +
-
 		"	\"github.com/caarlos0/env/v6\"\n" +
 		"	\"github.com/dantin-s/hydra/json\"\n" +
 		"	\"github.com/sirupsen/logrus\"\n" +

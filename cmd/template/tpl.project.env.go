@@ -4,7 +4,7 @@ func init() {
 	CommonProjectFiles["config/env.go"] = "package config\n\n" +
 		"import (\n" +
 		"	\"github.com/caarlos0/env/v6\"\n" +
-		"	\"github.com/dantin-s/hydra/json\"\n" +
+		"	\"github.com/vincentob/hydra/json\"\n" +
 		"	\"github.com/sirupsen/logrus\"\n" +
 		")\n\n" +
 

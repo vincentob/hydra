@@ -1,4 +1,4 @@
-module github.com/dantin-s/hydra
+module github.com/vincentob/hydra
 
 go 1.15
 

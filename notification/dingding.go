@@ -1,7 +1,7 @@
 package notification
 
 import (
-	"github.com/dantin-s/hydra/httpclient"
+	"github.com/vincentob/hydra/httpclient"
 	"github.com/pkg/errors"
 )
 

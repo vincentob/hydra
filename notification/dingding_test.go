@@ -3,7 +3,7 @@ package notification_test
 import (
 	"testing"
 
-	"github.com/dantin-s/hydra/notification"
+	"github.com/vincentob/hydra/notification"
 	"github.com/sirupsen/logrus"
 )
 

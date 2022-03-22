@@ -6,7 +6,7 @@ import (
 	"syscall"
 
 	"github.com/sirupsen/logrus"
-	"github.com/dantin-s/hydra/explosion"
+	"github.com/vincentob/hydra/explosion"
 )
 
 var (

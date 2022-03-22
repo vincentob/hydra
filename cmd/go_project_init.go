@@ -10,7 +10,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
 
-	tpl "github.com/dantin-s/hydra/cmd/template"
+	tpl "github.com/vincentob/hydra/cmd/template"
 )
 
 var (
@@ -47,7 +47,7 @@ func initGolangProject(c *cli.Context, projectType string) error {
 	projectPath := c.Args().First()
 	projectPathSplit := strings.Split(projectPath, "/")
 
-	if len(projectPathSplit) != 3 {
+	if len(projectPathSplit) < 3 {
 		return errors.New("Project path should like 'github.com/user/projectName' ")
 	}
 
@@ -57,7 +57,7 @@ func initGolangProject(c *cli.Context, projectType string) error {
 	}
 
 	data := &TemplateData{
-		ProjectName: projectPathSplit[2],
+		ProjectName: projectPathSplit[len(projectPathSplit)-1],
 		ProjectPath: projectPath,
 	}
 

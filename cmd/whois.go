@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/dantin-s/hydra/utils/whois"
+	"github.com/vincentob/hydra/utils/whois"
 
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"

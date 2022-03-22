@@ -13,7 +13,7 @@ import (
 
 	. "github.com/smartystreets/goconvey/convey"
 
-	"github.com/dantin-s/hydra/httpclient"
+	"github.com/vincentob/hydra/httpclient"
 )
 
 const (

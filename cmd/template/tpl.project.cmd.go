@@ -16,8 +16,8 @@ func Default(c *cli.Context) error {
 package cmd
 
 import (
-	"github.com/dantin-s/hydra/middlewares"
-	"github.com/dantin-s/hydra/signals"
+	"github.com/vincentob/hydra/middlewares"
+	"github.com/vincentob/hydra/signals"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"

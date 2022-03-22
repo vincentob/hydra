@@ -5,7 +5,7 @@ func init() {
 package api
 
 import (
-	"github.com/dantin-s/hydra/formutil"
+	"github.com/vincentob/hydra/formutil"
 	"github.com/gin-gonic/gin"
 
 	"{{ .ProjectPath }}/handler"

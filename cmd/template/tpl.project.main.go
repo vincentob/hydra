@@ -14,7 +14,7 @@ import (
 
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
-	"github.com/dantin-s/hydra/logger"
+	"github.com/vincentob/hydra/logger"
 
 	"{{ .ProjectPath }}/cmd"
 	"{{ .ProjectPath }}/config"

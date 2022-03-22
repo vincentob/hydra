@@ -5,7 +5,7 @@ import (
 
 	"github.com/sirupsen/logrus"
 
-	"github.com/dantin-s/hydra/utils/whois"
+	"github.com/vincentob/hydra/utils/whois"
 )
 
 func main() {

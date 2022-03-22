@@ -10,7 +10,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 
-	"github.com/dantin-s/hydra/json"
+	"github.com/vincentob/hydra/json"
 )
 
 // DoGetJsonWithHeader send http request with method GET and customHeaders

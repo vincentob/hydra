@@ -7,7 +7,7 @@ import (
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 
-	"github.com/dantin-s/hydra/logger"
+	"github.com/vincentob/hydra/logger"
 )
 
 // Message is the common message log for gin http server.

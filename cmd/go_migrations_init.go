@@ -8,7 +8,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
 
-	tpl "github.com/dantin-s/hydra/cmd/template"
+	tpl "github.com/vincentob/hydra/cmd/template"
 )
 
 var (

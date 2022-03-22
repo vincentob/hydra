@@ -4,8 +4,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/dantin-s/hydra/cmd"
-	_ "github.com/dantin-s/hydra/logger"
+	"github.com/vincentob/hydra/cmd"
+	_ "github.com/vincentob/hydra/logger"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
 )

@@ -27,12 +27,20 @@ func init() {
 }
 
 // WaitForExit block and wait for complete or terminated signal.
-func WaitForExit() {
+func WaitForExit(isProduction bool) error {
 	select {
 	case sig := <-SigTerminated:
 		logrus.Infof("Receive %v signal.", sig)
-		explosion.CountDownAndExplosion(3)
+
+		if isProduction {
+			explosion.CountDownAndExplosion(3)
+		}
+
+		logrus.Info("Bye Bye :)")
+
 	case <-SigCompleted:
 		logrus.Info("Completed.")
 	}
+
+	return nil
 }

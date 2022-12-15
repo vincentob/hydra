@@ -52,6 +52,10 @@ func main() {
 		logrus.SetLevel(lvl)
 	}
 
+	if logrus.IsLevelEnabled(logrus.DebugLevel) {
+		config.PrintENV()
+	}
+
 	if err := app.Run(os.Args); err != nil {
 		logrus.Fatal(err)
 	}

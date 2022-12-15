@@ -12,5 +12,4 @@ func CountDownAndExplosion(s int) {
 		logrus.Info(i)
 		time.Sleep(time.Second * 1)
 	}
-	logrus.Info("Bye Bye :)")
 }

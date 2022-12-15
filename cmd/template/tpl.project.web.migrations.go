@@ -11,8 +11,8 @@ func init() {
 package migrations
 
 import (
-	"github.com/jinzhu/gorm"
-	"gopkg.in/gormigrate.v1"
+	"github.com/go-gormigrate/gormigrate/v2"
+	"gorm.io/gorm"
 )
 
 func init() {
@@ -23,19 +23,19 @@ func init() {
 			tx = tx.Debug().Set("gorm:table_options", "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4")
 
 			// Use gorm auto migrate
-			//if err := tx.AutoMigrate(&Category{}).Error; err != nil {
+			//if err := tx.AutoMigrate(&Category{}); err != nil {
 			//	return err
 			//}
 
 			// Use sql migrate (use gorm better)
-			//if err := tx.execute("sql").Error; err != nil {
+			//if err := tx.execute("sql"); err != nil {
 			//	return err
 			//}	
 
 			return nil
 		},
 		Rollback: func(tx *gorm.DB) error {
-			return tx.DropTable("categories").Error
+			return tx.Migrator().DropTable("xxxxx")
 		},
 	})
 }
@@ -47,8 +47,8 @@ package migrations
 import (
 	"sort"
 
-	"github.com/jinzhu/gorm"
-	"gopkg.in/gormigrate.v1"
+	"github.com/go-gormigrate/gormigrate/v2"
+	"gorm.io/gorm"
 )
 
 var Migrations []*gormigrate.Migration
@@ -59,7 +59,6 @@ func DoMigrate(db *gorm.DB) error {
 		return n[i].ID < n[j].ID
 	})
 
-	gormigrate.DefaultOptions.IDColumnSize = 50
 	m := gormigrate.New(
 		db,
 		gormigrate.DefaultOptions,
@@ -67,5 +66,6 @@ func DoMigrate(db *gorm.DB) error {
 	)
 
 	return m.Migrate()
-}`
+}
+`
 }

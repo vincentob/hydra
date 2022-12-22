@@ -7,6 +7,7 @@ require (
 	github.com/ghodss/yaml v1.0.0
 	github.com/gin-contrib/sessions v0.0.4
 	github.com/gin-gonic/gin v1.7.7
+	github.com/go-sql-driver/mysql v1.7.0
 	github.com/json-iterator/go v1.1.10
 	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.8.1

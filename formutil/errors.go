@@ -36,6 +36,11 @@ func NewForbiddenError() FormError {
 	return FormError{Status: http.StatusForbidden, Err: "Forbidden"}
 }
 
+// 404
+func NewNotFoundError() FormError {
+	return FormError{Status: http.StatusNotFound, Err: "Not Found"}
+}
+
 // 500
 func NewInternalError() FormError {
 	return FormError{Status: http.StatusInternalServerError, Err: "InternalServerError"}

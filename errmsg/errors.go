@@ -2,7 +2,6 @@ package errmsg
 
 // Use this msg for pkg/errors WithMessage to wrap err msg.
 // Like:
-//
 const (
 	// Http error msg
 	HttpBadRequest         = "bad request"
